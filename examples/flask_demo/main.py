@@ -3,6 +3,7 @@
 import time
 from flask import Flask
 from autostat import FlaskStat
+import user
 
 DEBUG = True
 
@@ -12,7 +13,8 @@ STAT_HOST = '127.0.0.1'
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-fga = FlaskStat(app)
+app.register_blueprint(user.bp, url_prefix='/user')
+flask_stat = FlaskStat(app)
 
 
 @app.route('/allow')
