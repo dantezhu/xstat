@@ -15,7 +15,7 @@ class DjangoStat(StatAdapter):
 
         self._stat_title = getattr(settings, 'STAT_TITLE', None)
         self._stat_host = getattr(settings, 'STAT_HOST', None)
-        self._stat_port = getattr(settings, 'STAT_PORT', None)
+        self._stat_port = getattr(settings, 'STAT_PORT', None) or 8125
         self._stat_forbid_paths = getattr(settings, 'STAT_FORBID_PATHS', None)
         self._stat_allow_paths = getattr(settings, 'STAT_ALLOW_PATHS', None)
         self._stat_hack_paths = getattr(settings, 'STAT_HACK_PATHS', None)

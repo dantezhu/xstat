@@ -51,5 +51,5 @@ class StatAdapter(object):
 
         return path
 
-    def replace_dot(self, src, to='_'):
+    def replace_dot(self, src, to='-'):
         return (src or '').replace('.', to)

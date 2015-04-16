@@ -21,7 +21,7 @@ class FlaskStat(StatAdapter):
         """
         self._stat_title = app.config.get('STAT_TITLE')
         self._stat_host = app.config.get('STAT_HOST')
-        self._stat_port = app.config.get('STAT_PORT')
+        self._stat_port = app.config.get('STAT_PORT') or 8125
         self._stat_forbid_paths = app.config.get('STAT_FORBID_PATHS')
         self._stat_allow_paths = app.config.get('STAT_ALLOW_PATHS')
         self._stat_hack_paths = app.config.get('STAT_HACK_PATHS')
@@ -44,7 +44,7 @@ class FlaskStat(StatAdapter):
         @app.teardown_request
         @catch_exc
         def send_stat(exc):
-            if not g.stat_timer:
+            if not hasattr(g, 'stat_timer'):
                 return
 
             g.stat_timer.stop()

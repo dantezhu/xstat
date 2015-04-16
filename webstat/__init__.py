@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-统计项:
-    STAT_ID : 统计的顶级目录，可以为 x.y，这样就是两层目录
-    STAT_HOST : statsd服务器IP
+配置项:
+    * STAT_TITLE : 统计的顶级目录，可以为 x.y，这样就是两层目录
+    * STAT_HOST : statsd服务器IP
     STAT_PORT : statsd服务器端口
     STAT_FORBID_PATHS : 被拒绝的paths，优先级高于 STAT_ALLOW_PATHS
     STAT_ALLOW_PATHS : 被允许的paths
