@@ -34,7 +34,7 @@ class FlaskStat(StatAdapter):
                 return
 
             stat_name = '.'.join([
-                self.replace_dot(self._stat_title),
+                self._stat_title,
                 self.replace_dot(request.path),
                 ])
 

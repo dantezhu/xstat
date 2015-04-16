@@ -1,14 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-要求配置:
-    GA_ID : Google分析的跟踪ID
-    GA_AGENT_HOST : GAAgent的启动IP
-    GA_AGENT_PORT : GAAgent的启动端口
-    GA_FORBID_PATHS : 被拒绝的paths，优先级高于 GA_ALLOW_PATHS
-    GA_ALLOW_PATHS : 被允许的paths
-    GA_HACK_PATHS: 上报时按照规则替换，在allow和forbid判断之后进行. 示例: [(r'^/all(\S+)', r'ok\g<1>')]
-    GA_LOGGER_NAME : 用来打印log的name
-"""
 
 import re
 from log import logger
