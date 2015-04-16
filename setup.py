@@ -3,14 +3,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="webstat",
+    name="autostat",
     version="0.1.5",
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     install_requires=['statsd'],
     scripts=[],
-    url="https://github.com/dantezhu/webstat",
+    url="https://github.com/dantezhu/autostat",
     license="MIT",
     author="dantezhu",
     author_email="dantezhu@qq.com",
-    description="make statsd work with flask or django",
+    description="make statsd work with flask, django, maple or other server",
 )
