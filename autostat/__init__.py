@@ -11,3 +11,4 @@ __version__ = '0.1.6'
 
 from .django_stat import DjangoStat
 from .flask_stat import FlaskStat
+from .maple_stat import MapleStat
