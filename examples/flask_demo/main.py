@@ -7,7 +7,7 @@ from webstat import FlaskStat
 DEBUG = True
 
 STAT_TITLE = 'dante.test'
-STAT_HOST = '42.96.128.64'
+STAT_HOST = '127.0.0.1'
 # STAT_FORBID_PATHS = [r'^/forbid']
 # STAT_ALLOW_PATHS = [r'^/allow', r'/forbid']
 # STAT_HACK_PATHS = [
