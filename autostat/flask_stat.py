@@ -33,6 +33,9 @@ class FlaskStat(object):
         @app.before_request
         @catch_exc
         def prepare_stat():
+            if not request.endpoint:
+                return
+
             g.stat_timers = []
             g.stat_timers.append(
                 self._stat_client.timer('.'.join([

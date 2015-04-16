@@ -30,6 +30,9 @@ class MapleStat(object):
 
         @app.before_request
         def prepare_stat(request):
+            if not request.endpoint:
+                return
+
             request.stat_timers = []
             request.stat_timers.append(
                 self._stat_client.timer('.'.join([
