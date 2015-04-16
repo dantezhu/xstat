@@ -31,7 +31,7 @@ class DjangoStat(object):
             self._stat_client.timer('.'.join([
                 self._stat_title,
                 'endpoint',
-                request.path,
+                request.resolver_match.url_name,
                 ])
             )
         )
