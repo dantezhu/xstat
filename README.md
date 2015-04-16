@@ -1,2 +1,2 @@
 # webstat
-join statsd with flask or django
+make statsd work with flask or django
