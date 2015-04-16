@@ -25,7 +25,11 @@ class DjangoStat(object):
         self._stat_client = StatsClient(host=self._stat_host, port=self._stat_port)
 
     @catch_exc
-    def process_request(self, request):
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        """
+        request.resolver_match.url_name 在process_view才可以取到
+        :return:
+        """
         request.stat_timers = []
         request.stat_timers.append(
             self._stat_client.timer('.'.join([
