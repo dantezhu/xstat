@@ -86,8 +86,3 @@ STATIC_URL = '/static/'
 # stat
 STAT_TITLE = 'dante.test2'
 STAT_HOST = '127.0.0.1'
-# STAT_FORBID_PATHS = [r'^/forbid']
-# STAT_ALLOW_PATHS = [r'^/allow', r'/forbid']
-# STAT_HACK_PATHS = [
-#     (r'/all(\S+)', r'/\g<1>/ok'),
-# ]

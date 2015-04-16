@@ -2,11 +2,16 @@
 
 from statsd import StatsClient
 
-from stat_adapter import StatAdapter
 from utils import catch_exc
+import constants
 
 
-class DjangoStat(StatAdapter):
+class DjangoStat(object):
+    _stat_title = None
+    _stat_host = None
+    _stat_port = None
+
+    _stat_client = None
 
     def __init__(self):
         from django.conf import settings
@@ -15,34 +20,42 @@ class DjangoStat(StatAdapter):
 
         self._stat_title = getattr(settings, 'STAT_TITLE', None)
         self._stat_host = getattr(settings, 'STAT_HOST', None)
-        self._stat_port = getattr(settings, 'STAT_PORT', None) or 8125
-        self._stat_forbid_paths = getattr(settings, 'STAT_FORBID_PATHS', None)
-        self._stat_allow_paths = getattr(settings, 'STAT_ALLOW_PATHS', None)
-        self._stat_hack_paths = getattr(settings, 'STAT_HACK_PATHS', None)
+        self._stat_port = getattr(settings, 'STAT_PORT', None) or constants.STAT_PORT
 
         self._stat_client = StatsClient(host=self._stat_host, port=self._stat_port)
 
     @catch_exc
     def process_request(self, request):
-        if not self.should_stat(request.path):
-            return
+        request.stat_timers = []
+        request.stat_timers.append(
+            self._stat_client.timer('.'.join([
+                self._stat_title,
+                'endpoint',
+                request.path,
+                ])
+            )
+        )
 
-        stat_name = '.'.join([
-            self._stat_title,
-            self.replace_dot(self.hack_path(request.path)),
-            ])
+        request.stat_timers.append(
+            self._stat_client.timer('.'.join([
+                self._stat_title,
+                'all',
+                ])
+            )
+        )
 
-        request.stat_timer = self._stat_client.timer(stat_name)
-        request.stat_timer.start()
+        for stat in request.stat_timers:
+            stat.start()
 
     @catch_exc
     def process_response(self, request, response):
         """
         无论是否抛出异常，都会执行这一步
         """
-        if not hasattr(request, 'stat_timer'):
+        if not hasattr(request, 'stat_timers'):
             return response
 
-        request.stat_timer.stop()
+        for stat in request.stat_timers:
+            stat.stop()
 
         return response

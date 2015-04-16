@@ -8,11 +8,6 @@ DEBUG = True
 
 STAT_TITLE = 'dante.test'
 STAT_HOST = '127.0.0.1'
-# STAT_FORBID_PATHS = [r'^/forbid']
-# STAT_ALLOW_PATHS = [r'^/allow', r'/forbid']
-# STAT_HACK_PATHS = [
-#     (r'/all(\S+)', r'/\g<1>/ok'),
-# ]
 
 app = Flask(__name__)
 app.config.from_object(__name__)
