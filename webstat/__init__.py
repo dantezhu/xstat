@@ -10,7 +10,7 @@
     STAT_HACK_PATHS: 上报时按照规则替换，在allow和forbid判断之后进行. 示例: [(r'^/all(\S+)', r'ok\g<1>')]
 """
 
-__version__ = '0.1.2'
+__version__ = '0.1.5'
 
 from .django_stat import DjangoStat
 from .flask_stat import FlaskStat

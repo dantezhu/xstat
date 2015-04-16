@@ -35,7 +35,7 @@ class FlaskStat(StatAdapter):
 
             stat_name = '.'.join([
                 self._stat_title,
-                self.replace_dot(request.path),
+                self.replace_dot(self.hack_path(request.path)),
                 ])
 
             g.stat_timer = self._stat_client.timer(stat_name)

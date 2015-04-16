@@ -29,7 +29,7 @@ class DjangoStat(StatAdapter):
 
         stat_name = '.'.join([
             self._stat_title,
-            self.replace_dot(request.path),
+            self.replace_dot(self.hack_path(request.path)),
             ])
 
         request.stat_timer = self._stat_client.timer(stat_name)
