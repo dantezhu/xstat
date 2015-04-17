@@ -9,8 +9,8 @@ app = Worker(Box)
 app.register_blueprint(user.bp)
 
 maple_stat = MapleStat(app, dict(
-    STAT_TITLE='dante.test',
-    STAT_HOST='127.0.0.1',
+    XSTAT_TITLE='dante.test',
+    XSTAT_HOST='127.0.0.1',
 ))
 
 

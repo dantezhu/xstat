@@ -7,9 +7,9 @@ import constants
 
 
 class DjangoStat(object):
-    _stat_title = None
-    _stat_host = None
-    _stat_port = None
+    _xstat_title = None
+    _xstat_host = None
+    _xstat_port = None
 
     _stat_client = None
 
@@ -18,11 +18,11 @@ class DjangoStat(object):
 
         super(DjangoStat, self).__init__()
 
-        self._stat_title = getattr(settings, 'STAT_TITLE', None)
-        self._stat_host = getattr(settings, 'STAT_HOST', None)
-        self._stat_port = getattr(settings, 'STAT_PORT', None) or constants.STAT_PORT
+        self._xstat_title = getattr(settings, 'XSTAT_TITLE', None)
+        self._xstat_host = getattr(settings, 'XSTAT_HOST', None)
+        self._xstat_port = getattr(settings, 'XSTAT_PORT', None) or constants.XSTAT_PORT
 
-        self._stat_client = StatsClient(host=self._stat_host, port=self._stat_port)
+        self._stat_client = StatsClient(host=self._xstat_host, port=self._xstat_port)
 
     @catch_exc
     def process_view(self, request, view_func, view_args, view_kwargs):
@@ -30,25 +30,25 @@ class DjangoStat(object):
         request.resolver_match.url_name 在process_view才可以取到
         :return:
         """
-        request.stat_timers = []
-        request.stat_timers.append(
+        request.xstat_timers = []
+        request.xstat_timers.append(
             self._stat_client.timer('.'.join([
-                self._stat_title,
+                self._xstat_title,
                 'endpoint',
                 request.resolver_match.url_name,
                 ])
             )
         )
 
-        request.stat_timers.append(
+        request.xstat_timers.append(
             self._stat_client.timer('.'.join([
-                self._stat_title,
+                self._xstat_title,
                 'all',
                 ])
             )
         )
 
-        for stat in request.stat_timers:
+        for stat in request.xstat_timers:
             stat.start()
 
     @catch_exc
@@ -56,10 +56,10 @@ class DjangoStat(object):
         """
         无论是否抛出异常，都会执行这一步
         """
-        if not hasattr(request, 'stat_timers'):
+        if not hasattr(request, 'xstat_timers'):
             return response
 
-        for stat in request.stat_timers:
+        for stat in request.xstat_timers:
             stat.stop()
 
         return response

@@ -84,5 +84,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # stat
-STAT_TITLE = 'dante.test'
-STAT_HOST = '127.0.0.1'
+XSTAT_TITLE = 'dante.test'
+XSTAT_HOST = '127.0.0.1'

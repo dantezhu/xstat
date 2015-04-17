@@ -7,8 +7,8 @@ import user
 
 DEBUG = True
 
-STAT_TITLE = 'dante.test'
-STAT_HOST = '127.0.0.1'
+XSTAT_TITLE = 'dante.test'
+XSTAT_HOST = '127.0.0.1'
 
 app = Flask(__name__)
 app.config.from_object(__name__)

@@ -7,9 +7,9 @@ import constants
 
 class MapleStat(object):
 
-    _stat_title = None
-    _stat_host = None
-    _stat_port = None
+    _xstat_title = None
+    _xstat_host = None
+    _xstat_port = None
 
     _stat_client = None
 
@@ -23,41 +23,41 @@ class MapleStat(object):
         """
         绑定app
         """
-        self._stat_title = config.get('STAT_TITLE')
-        self._stat_host = config.get('STAT_HOST')
-        self._stat_port = config.get('STAT_PORT') or constants.STAT_PORT
-        self._stat_client = StatsClient(host=self._stat_host, port=self._stat_port)
+        self._xstat_title = config.get('XSTAT_TITLE')
+        self._xstat_host = config.get('XSTAT_HOST')
+        self._xstat_port = config.get('XSTAT_PORT') or constants.XSTAT_PORT
+        self._stat_client = StatsClient(host=self._xstat_host, port=self._xstat_port)
 
         @app.before_request
         def prepare_stat(request):
             if not request.endpoint:
                 return
 
-            request.stat_timers = []
-            request.stat_timers.append(
+            request.xstat_timers = []
+            request.xstat_timers.append(
                 self._stat_client.timer('.'.join([
-                    self._stat_title,
+                    self._xstat_title,
                     'endpoint',
                     request.endpoint,
                     ])
                 )
             )
 
-            request.stat_timers.append(
+            request.xstat_timers.append(
                 self._stat_client.timer('.'.join([
-                    self._stat_title,
+                    self._xstat_title,
                     'all',
                     ])
                 )
             )
 
-            for stat in request.stat_timers:
+            for stat in request.xstat_timers:
                 stat.start()
 
         @app.after_request
         def send_stat(request, exc):
-            if not hasattr(request, 'stat_timers'):
+            if not hasattr(request, 'xstat_timers'):
                 return
 
-            for stat in request.stat_timers:
+            for stat in request.xstat_timers:
                 stat.stop()
