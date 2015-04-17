@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="autostat",
-    version="0.1.7",
+    version="0.1.8",
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     install_requires=['statsd'],
     scripts=[],
