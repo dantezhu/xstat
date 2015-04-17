@@ -2,6 +2,7 @@
 
 from statsd import StatsClient
 
+from utils import catch_exc
 import constants
 
 
@@ -29,6 +30,7 @@ class MapleStat(object):
         self._stat_client = StatsClient(host=self._xstat_host, port=self._xstat_port)
 
         @app.before_request
+        @catch_exc
         def prepare_stat(request):
             if not request.endpoint:
                 return
@@ -55,6 +57,7 @@ class MapleStat(object):
                 stat.start()
 
         @app.after_request
+        @catch_exc
         def send_stat(request, exc):
             if not hasattr(request, 'xstat_timers'):
                 return
