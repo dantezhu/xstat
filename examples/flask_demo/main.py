@@ -2,7 +2,7 @@
 
 import time
 from flask import Flask
-from autostat import FlaskStat
+from xstat import FlaskStat
 import user
 
 DEBUG = True

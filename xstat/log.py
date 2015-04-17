@@ -2,4 +2,4 @@
 
 import logging
 
-logger = logging.getLogger('autostat')
+logger = logging.getLogger('xstat')

@@ -2,7 +2,7 @@
 
 from maple import Worker
 from netkit.box import Box
-from autostat import MapleStat
+from xstat import MapleStat
 import user
 
 app = Worker(Box)
