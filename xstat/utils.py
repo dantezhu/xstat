@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from log import logger
+from .log import logger
 
 
 def catch_exc(func):

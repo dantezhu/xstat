@@ -20,13 +20,13 @@ flask_stat = FlaskStat(app)
 @app.route('/allow')
 def allow():
     time.sleep(1)
-    return u'ok'
+    return 'ok'
 
 
 @app.route('/forbid')
 def forbid():
     time.sleep(1)
-    return u'forbid'
+    return 'forbid'
 
 if __name__ == '__main__':
     app.run()

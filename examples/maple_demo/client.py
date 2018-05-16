@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+
 import sys
 import time
 from netkit.contrib.tcp_client import TcpClient
@@ -23,15 +25,15 @@ def handle(uid):
     while True:
         # 阻塞
         box = client.read()
-        print 'time past: ', time.time() - t1
-        print box
+        print('time past: ', time.time() - t1)
+        print(box)
         if not box:
-            print 'server closed'
+            print('server closed')
             break
 
 def main():
     if len(sys.argv) < 2:
-        print "input uid please"
+        print("input uid please")
         return
 
     uid = int(sys.argv[1])

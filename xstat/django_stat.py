@@ -2,8 +2,8 @@
 
 from statsd import StatsClient
 
-from utils import catch_exc
-import constants
+from .utils import catch_exc
+from . import constants
 
 
 class DjangoStat(object):
