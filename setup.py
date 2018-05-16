@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="xstat",
-    version="0.1.9",
+    version="0.2.1",
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     install_requires=['statsd'],
     scripts=[],
