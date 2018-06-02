@@ -7,7 +7,7 @@
     * XSTAT_PORT : statsd服务器端口
 """
 
-__version__ = '0.2.1'
+__version__ = '0.2.3'
 
 from .django_stat import DjangoStat
 from .flask_stat import FlaskStat
