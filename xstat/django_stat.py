@@ -17,10 +17,10 @@ class DjangoStat(MiddlewareMixin):
 
     _stat_client = None
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         from django.conf import settings
 
-        super(DjangoStat, self).__init__()
+        super(DjangoStat, self).__init__(*args, **kwargs)
 
         self._xstat_title = getattr(settings, 'XSTAT_TITLE', None)
         self._xstat_host = getattr(settings, 'XSTAT_HOST', None)
