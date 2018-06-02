@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 
 from statsd import StatsClient
+try:
+    from django.utils.deprecation import MiddlewareMixin  # Django 1.11.13
+except ImportError:
+    MiddlewareMixin = object  # Django 1.6.8
 
 from .utils import catch_exc
 from . import constants
 
 
-class DjangoStat(object):
+class DjangoStat(MiddlewareMixin):
     _xstat_title = None
     _xstat_host = None
     _xstat_port = None
